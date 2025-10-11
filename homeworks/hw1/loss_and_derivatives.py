@@ -16,7 +16,7 @@ class LossAndDerivatives:
         Comment: If Y is two-dimentional, average the error over both dimentions.
         """
 
-        return np.mean((X.dot(w) - Y)**2)
+        return np.mean((X.dot(w) - Y) ** 2)
 
     @staticmethod
     def mae(X, Y, w):
@@ -32,8 +32,7 @@ class LossAndDerivatives:
         Comment: If Y is two-dimentional, average the error over both dimentions.
         """
 
-        # YOUR CODE HERE    
-        return 
+        return np.mean(np.abs(X.dot(w) - Y))
 
     @staticmethod
     def l2_reg(w):
@@ -41,13 +40,12 @@ class LossAndDerivatives:
         w : numpy array of shape (`n_features`, `target_dimentionality`) or (`n_features`,)
 
         Return: float
-            single number with sum of squared elements of the weight matrix ( \sum_{ij} w_{ij}^2 )
+            single number with sum of squared elements of the weight matrix ( sum_{ij} w_{ij}^2 )
 
         Computes the L2 regularization term for the weight matrix w.
         """
         
-        # YOUR CODE HERE
-        return 
+        return np.sum(w ** 2)
 
     @staticmethod
     def l1_reg(w):
@@ -55,13 +53,12 @@ class LossAndDerivatives:
         w : numpy array of shape (`n_features`, `target_dimentionality`)
 
         Return : float
-            single number with sum of the absolute values of the weight matrix ( \sum_{ij} |w_{ij}| )
+            single number with sum of the absolute values of the weight matrix ( sum_{ij} |w_{ij}| )
         
         Computes the L1 regularization term for the weight matrix w.
         """
 
-        # YOUR CODE HERE
-        return 
+        return np.sum(np.abs(w))
 
     @staticmethod
     def no_reg(w):
@@ -86,8 +83,7 @@ class LossAndDerivatives:
         dimension as well, so you need to consider that fact in derivative implementation.
         """
 
-        # YOUR CODE HERE
-        return 
+        return 2 * X.T.dot(X.dot(w) - Y) / X.shape[0] / (1 if Y.ndim == 1 else Y.shape[1])
 
     @staticmethod
     def mae_derivative(X, Y, w):
@@ -105,8 +101,7 @@ class LossAndDerivatives:
         dimension as well, so you need to consider that fact in derivative implementation.
         """
 
-        # YOUR CODE HERE
-        return 
+        return X.T.dot(np.sign(X.dot(w) - Y)) / X.shape[0] / (1 if Y.ndim == 1 else Y.shape[1])
 
     @staticmethod
     def l2_reg_derivative(w):
@@ -118,8 +113,7 @@ class LossAndDerivatives:
         Computes the L2 regularization term derivative w.r.t. the weight matrix w.
         """
 
-        # YOUR CODE HERE
-        return 
+        return 2 * w
 
     @staticmethod
     def l1_reg_derivative(w):
@@ -132,8 +126,7 @@ class LossAndDerivatives:
         Computes the L1 regularization term derivative w.r.t. the weight matrix w.
         """
 
-        # YOUR CODE HERE
-        return 
+        return np.sign(w)
 
     @staticmethod
     def no_reg_derivative(w):
